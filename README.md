@@ -45,14 +45,11 @@ portfolio/
  |-- README.md         => este arquivo de descrição
  |-- arquivos/         => arquivos para download
  |    '-- curriculo-alendre-silveira.pdf
- |-- imagens/          => imagens usadas na página
- |    |-- perfil.png
- |    |-- slide1.png, slide2.png, slide3.png
- |    |-- p1.png, p2.png, p3.png
- |    '-- compartilhar.png
- '-- prints/           => capturas de tela da entrega
-      |-- print-codigo.png
-      '-- print-navegador.png
+ '-- imagens/          => imagens usadas na página
+      |-- perfil.png
+      |-- slide1.png, slide2.png, slide3.png
+      |-- p1.png, p2.png, p3.png
+      '-- compartilhar.png
 ```
 
 ## ⚙️ Como o projeto funciona
@@ -209,14 +206,6 @@ start index.html
 ```
 
 Ou acesse direto o site publicado: https://alendre-sjc.github.io/portfolio/
-
-## 🖼️ Capturas de tela
-
-### Código no VS Code
-![Código da página](prints/print-codigo.png)
-
-### Página no navegador
-![Página no navegador](prints/print-navegador.png)
 
 ## 📌 Fonte das imagens
 
