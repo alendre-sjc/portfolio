@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<!--
+===============================================================
+COMO ESTA PÁGINA FUNCIONA: explicada na ordem em que é lida
+===============================================================
+Este arquivo é comentado "Ato" por "Ato", seguindo a ORDEM em
+que o navegador lê a página. O navegador lê o HTML de cima para
+baixo, uma tag de cada vez, e vai montando a página na tela.
+
+Nesta atividade, o HTML monta o ESQUELETO da página, o CSS e o
+Bootstrap cuidam da APARÊNCIA (cores, tamanhos, alinhamento e
+layout) e o JavaScript cuida de um COMPORTAMENTO (o botão que
+leva de volta ao topo).
+
+O CSS aparece aqui de DUAS formas:
+    1) EXTERNO => Bootstrap, Devicon e Bootstrap Icons, ligados
+                  pela tag <link>
+                  (ficam na internet, num endereço chamado CDN)
+    2) INTERNO => entre as tags <style> e </style>, no <head>,
+                  com as minhas cores e os recursos novos
+
+O Bootstrap é uma biblioteca de CSS pronta. Em vez de escrever
+todo o estilo, colocamos CLASSES nas tags (por exemplo
+class="btn btn-primary") e o Bootstrap já sabe como desenhar.
+
+Ordem de prioridade (quem "ganha" quando há conflito):
+    1º Regra com !important (passa na frente das outras)
+    2º Interno e Externo (vale o que foi declarado por último)
+    3º Padrão do navegador (mais fraco)
+
+Para executar: salve com Ctrl + S e dê dois cliques no arquivo
+index.html. Ele abre no navegador. Depois de alterar o código,
+salve de novo e aperte F5 no navegador para atualizar.
+Pelo terminal do VS Code, dentro da pasta do projeto:
+    start index.html
+Atenção: o Bootstrap e o Devicon vêm da internet. Sem conexão,
+a página abre, mas sem o visual completo.
+
+Publicado em: https://alendre-sjc.github.io/portfolio/
+
+Organização da pasta do projeto:
+    portfolio/                    => pasta raiz
+     |== index.html               => esta página
+     |== README.md                => documentação do projeto
+     |== arquivos/                => subpasta com o currículo
+          |== curriculo-alendre-silveira.pdf
+     |== imagens/                 => subpasta com as imagens
+          |== perfil.png          => minha foto
+          |== slide1.png          => fundo do 1º slide
+          |== slide2.png          => fundo do 2º slide
+          |== slide3.png          => fundo do 3º slide
+          |== p1.png              => imagem do projeto Portfólio
+          |== p2.png              => imagem do projeto Consumo Elétrico
+          |== p3.png              => imagem do projeto TudoWeb
+          |== compartilhar.png    => imagem da prévia do link
+
+Resumo da peça inteira:
+  Ato 0  => Informa ao navegador a versão do HTML (HTML5)
+  Ato 1  => Abre a página e define o idioma (português)
+  Ato 2  => Cabeçalho: configurações da página (meta tags)
+            e prévia do link ao compartilhar (Ato 2.1)
+  Ato 3  => Ligação do CSS externo (Bootstrap, Devicon e ícones)
+  Ato 4  => CSS Interno (tag <style>): cores e recursos novos
+  Ato 5  => Título que aparece na aba do navegador
+  Ato 6  => Corpo da página e menu de navegação (navbar)
+  Ato 7  => Carousel: slides de destaque com legenda animada
+  Ato 8  => Seção Perfil
+  Ato 9  => Seção Trajetória (recurso novo)
+  Ato 10 => Seção Projetos
+  Ato 11 => Seção Contato
+  Ato 12 => Rodapé
+  Ato 13 => Botão "voltar ao topo" (recurso novo)
+  Ato 14 => Scripts (Bootstrap e JavaScript) e fechamento
+===============================================================
+-->
+
+<!--
+===============================================================
+Ato 0: Declaração do tipo de documento
+===============================================================
+<!DOCTYPE html> (primeira linha do arquivo) NÃO é uma tag.
+É uma instrução que avisa ao navegador: "esta página foi feita
+em HTML5". Por isso ela sempre vem na primeira linha.
+===============================================================
+-->
+
+<!--
+===============================================================
+Ato 1: Abertura da página e definição do idioma
+===============================================================
+<html> abre a página. TODO o código fica entre <html> e </html>
+(o fechamento está no Ato 14).
+lang="pt-BR" é um ATRIBUTO: informa que o idioma da página é
+português do Brasil.
+===============================================================
+-->
+<html lang="pt-BR">
+
+<!--
+===============================================================
+Ato 2: Cabeçalho da página (configurações)
+===============================================================
+<head> guarda as CONFIGURAÇÕES da página. Nada daqui aparece
+dentro da página.
+  - charset="UTF-8"  => permite acentos e "ç" sem erro.
+  - name="viewport"  => base da RESPONSIVIDADE: adapta a página
+    ao tamanho da tela (celular, tablet, notebook). Sem ele, o
+    celular mostraria o site "miniatura", como numa tela grande.
+===============================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+    ===========================================================
+    Ato 2.1: Descrição e prévia do link ao compartilhar
+    ===========================================================
+    Quando alguém compartilha o endereço do site (WhatsApp,
+    LinkedIn, Facebook...), o aplicativo lê estas meta tags
+    para montar a PRÉVIA do link: título, texto e imagem.
+      name="description" => resumo do site (usado também pelo
+                            Google nos resultados de busca)
+      og:title       => título da prévia
+      og:description => texto da prévia
+      og:image       => imagem da prévia. Precisa do endereço
+                        COMPLETO (com https://)
+      og:url         => endereço oficial do site
+      og:type        => tipo de conteúdo (website)
+      og:locale      => idioma (português do Brasil)
+      twitter:card   => prévia com imagem grande no X (Twitter)
+    "og" vem de Open Graph, o padrão usado pelas redes sociais.
+    ===========================================================
+    -->
+    <meta name="description" content="Técnico em Processos com mais de 20 anos em Planejamento Industrial, PCP e Métodos e Processos, quase 18 anos de Embraer, e estudante de Desenvolvimento de Sistemas.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Alendre Silveira | Portfólio Profissional">
+    <meta property="og:description" content="Planejamento Industrial, PCP, Métodos e Processos e Melhoria Contínua, unidos ao Desenvolvimento de Sistemas.">
+    <meta property="og:url" content="https://alendre-sjc.github.io/portfolio/">
+    <meta property="og:image" content="https://alendre-sjc.github.io/portfolio/imagens/compartilhar.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--
+    ===========================================================
+    Ato 3: Ligação do CSS EXTERNO (Bootstrap, Devicon e Bootstrap Icons)
+    ===========================================================
+    A tag <link> liga um arquivo de fora à página. Ela não
+    precisa de fechamento.
+      rel="stylesheet" => avisa que é uma FOLHA DE ESTILO.
+      href="..."       => diz ONDE está o arquivo. Aqui o
+                          endereço é da internet (CDN), por isso
+                          começa com https://
+
+    1º link: BOOTSTRAP. Traz cores, botões, grid (linhas e
+    colunas), cards, menu e carousel prontos.
+    2º link: DEVICON. Traz os ícones das tecnologias (HTML5,
+    CSS3, Python...), usados no Ato 8.5.
+    3º link: BOOTSTRAP ICONS. Biblioteca de ícones do próprio
+    Bootstrap. Usada nas ferramentas da carreira industrial
+    (Ato 8.6), que não têm ícone no Devicon.
+
+    ATENÇÃO À ORDEM! Os links externos vêm ANTES do <style>
+    (Ato 4). Assim, quando o meu CSS muda algo do Bootstrap
+    (por exemplo, a cor azul padrão), vale o meu CSS, porque
+    ele foi declarado por último.
+    ===========================================================
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!--
+    ===========================================================
+    Ato 4: CSS INTERNO (tag <style>)
+    ===========================================================
+    Tudo que fica entre <style> e </style> é lido pelo navegador
+    como código CSS. É o CSS INTERNO: vale só para ESTA página.
+
+    Cada regra tem a forma:
+        seletor {
+            propriedade: valor;
+        }
+    O SELETOR diz QUEM recebe o estilo:
+      .nome  => CLASSE (começa com ponto). Pode ser usada em
+                VÁRIAS tags. Ex.: .card-animado
+      #nome  => ID (começa com cerquilha). Identifica UM
+                elemento ÚNICO da página. Ex.: #btnTopo
+    O ponto e vírgula separa uma declaração da outra.
+
+    Algumas regras reescrevem classes do PRÓPRIO Bootstrap
+    (como .bg-dark). Nelas uso !important para que a minha cor
+    passe na frente da cor original do Bootstrap.
+    ===========================================================
+    -->
+    <style>
+        /* ===== Ato 4.1: Cores do meu infocurrículo (RECURSO NOVO 5) ===== */
+        /* Azul-marinho #102B46, verde-azulado #087E86 e fundo claro #F1F6F8.  */
+        /* Aqui troco as cores padrão do Bootstrap pelas minhas.               */
+        .bg-dark {
+            background-color: #102B46 !important;   /* fundo escuro vira azul-marinho */
+        }
+
+        .bg-light {
+            background-color: #F1F6F8 !important;   /* fundo claro da página */
+        }
+
+        .bg-primary {
+            background-color: #087E86 !important;   /* fundo "principal" vira verde-azulado */
+        }
+
+        .text-primary {
+            color: #087E86 !important;              /* texto "principal" vira verde-azulado */
+        }
+
+        /* ===== Ato 4.2: Botões com as cores novas ===== */
+        /* :hover => vale só quando o mouse está em cima do botão */
+        .btn-primary {
+            background-color: #087E86;
+            border-color: #087E86;
+        }
+
+        .btn-primary:hover {
+            background-color: #06656B;              /* verde-azulado mais escuro */
+            border-color: #06656B;
+        }
+
+        .btn-dark {
+            background-color: #102B46;              /* botão escuro (GitHub) em azul-marinho */
+            border-color: #102B46;
+        }
+
+        .btn-outline-primary {
+            color: #087E86;                          /* botão só com borda (e-mail e "Ver projeto") */
+            border-color: #087E86;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #087E86;              /* ao passar o mouse, o botão fica preenchido */
+            border-color: #087E86;
+            color: white;
+        }
+
+        /* Botão do WhatsApp: classe criada por mim, com o verde do aplicativo */
+        .btn-whatsapp {
+            background-color: #25D366;
+            border-color: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1EBE5A;
+            border-color: #1EBE5A;
+            color: white;
+        }
+
+        /* ===== Ato 4.3: Faixas do menu e do rodapé ===== */
+        /* border-bottom: 4px solid => linha de 4 pixels, contínua, embaixo do menu */
+        .navbar {
+            border-bottom: 4px solid #087E86;
+        }
+
+        .navbar-brand {
+            color: #5DE0D7 !important;              /* nome do site em verde-azulado claro */
+        }
+
+        .rodape {
+            border-top: 4px solid #087E86;          /* mesma faixa, agora em cima do rodapé */
+        }
+
+        /* ===== Ato 4.4: Títulos das seções com tracinho embaixo ===== */
+        /* text-transform: uppercase => deixa o texto em letras MAIÚSCULAS        */
+        /* ::after => cria um elemento "extra" DEPOIS do título, sem mexer no HTML */
+        .titulo-secao {
+            color: #102B46;
+            text-transform: uppercase;
+        }
+
+        .titulo-secao::after {
+            content: "";                            /* obrigatório para o ::after aparecer */
+            display: block;                         /* joga o tracinho para a linha de baixo */
+            width: 60px;                            /* largura do tracinho */
+            height: 4px;                            /* altura do tracinho */
+            background-color: #087E86;
+            margin-top: 12px;                       /* espaço entre o título e o tracinho */
+        }
+
+        .text-center .titulo-secao::after {
+            margin: 12px auto 0;                    /* nos títulos centralizados, centraliza o tracinho */
+        }
+
+        /* ===== Ato 4.5: Cards das duas frentes do Perfil ===== */
+        /* Faixa colorida à esquerda: verde-azulada (indústria) e azul-marinho (sistemas) */
+        .frente {
+            border-left: 5px solid !important;
+        }
+
+        .frente-industria {
+            border-left-color: #087E86 !important;
+        }
+
+        .frente-sistemas {
+            border-left-color: #102B46 !important;
+        }
+
+        /* ===== Ato 4.6: Tamanho do carousel ===== */
+        /* 95vh => 95% da altura da tela                                   */
+        /* object-fit: cover => a imagem preenche sem esticar (corta sobras) */
+        .carousel-item {
+            height: 95vh;
+        }
+
+        .carousel-item img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== Ato 4.7: Legenda animada no carousel (RECURSO NOVO 1) ===== */
+        /* @keyframes cria uma animação chamada "surgir":                  */
+        /*   from => começa invisível (opacity 0) e 40px abaixo            */
+        /*   to   => termina visível (opacity 1) na posição normal         */
+        /* .carousel-item.active => só o slide que está aparecendo         */
+        .carousel-caption {
+            bottom: 30%;                            /* sobe a legenda para perto do meio */
+        }
+
+        .carousel-item.active .carousel-caption {
+            animation: surgir 1s ease;              /* roda "surgir" em 1 segundo, suave */
+        }
+
+        @keyframes surgir {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Ato 4.8: Foto do perfil e imagens dos projetos ===== */
+        /* px => pixels. Tamanho fixo para todas ficarem iguais */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* ===== Ato 4.9: Animação dos cards de projetos (RECURSO NOVO 2) ===== */
+        /* transition => a mudança acontece devagar (0.3 segundo)        */
+        /* translateY(-10px) => sobe o card 10 pixels                    */
+        /* box-shadow => sombra maior quando o mouse está em cima        */
+        .card-animado {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card-animado:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* ===== Ato 4.10: Linha do tempo da Trajetória (RECURSO NOVO 3) ===== */
+        /* .linha-tempo => a borda da esquerda vira a LINHA vertical           */
+        /* .item-tempo::before => desenha a BOLINHA de cada acontecimento      */
+        /* position: relative (no item) + absolute (na bolinha) => a bolinha   */
+        /* é posicionada em relação ao item, com left e top                    */
+        /* border-radius: 50% => transforma o quadrado em círculo              */
+        .linha-tempo {
+            border-left: 4px solid #087E86;
+            padding-left: 30px;                     /* afasta o texto da linha */
+        }
+
+        .item-tempo {
+            position: relative;
+            margin-bottom: 30px;                    /* espaço entre um item e outro */
+        }
+
+        .item-tempo::before {
+            content: "";
+            position: absolute;
+            left: -42px;                            /* puxa a bolinha para cima da linha */
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background-color: #087E86;
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        /* ===== Ato 4.11: Botão voltar ao topo (RECURSO NOVO 4) ===== */
+        /* #btnTopo => seletor de ID: só o elemento com id="btnTopo"      */
+        /* position: fixed => fica parado no canto, mesmo rolando a página */
+        /* display: none => começa ESCONDIDO (o JavaScript mostra depois)  */
+        /* z-index: 1000 => fica por cima dos outros elementos             */
+        #btnTopo {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: none;
+            z-index: 1000;
+        }
+
+        /* ===== Ato 4.12: Ícones das ferramentas da carreira industrial ===== */
+        /* Os ícones do Bootstrap Icons têm uma cor só. Aqui escolho a cor:   */
+        /* verde-azulado para combinar com o restante do site.                */
+        .icone-ferramenta {
+            color: #087E86;
+        }
+    </style>
+
+    <!--
+    ===========================================================
+    Ato 5: Título da aba do navegador
+    ===========================================================
+    O texto da tag TITLE (logo abaixo) aparece na ABA do navegador
+    e também nos resultados de busca do Google.
+    ===========================================================
+    -->
+    <title>Alendre Silveira | Portfólio Profissional</title>
+</head>
+
+<!--
+===============================================================
+Ato 6: Corpo da página e menu de navegação (navbar)
+===============================================================
+<body> é o corpo. TUDO que fica aqui APARECE na tela.
+class="bg-light" => classe do Bootstrap: fundo claro (a cor foi
+trocada pelo meu fundo #F1F6F8 no Ato 4.1).
+
+<nav> cria o MENU. As classes do Bootstrap definem o visual:
+  navbar            => transforma o bloco numa barra de menu
+  navbar-expand-lg  => em tela GRANDE o menu fica aberto; em tela
+                       PEQUENA (celular) vira um botão
+  navbar-dark bg-dark => fundo escuro e letras claras
+  sticky-top        => o menu fica PRESO no topo ao rolar a página
+  shadow-sm         => sombra leve embaixo do menu
+  container         => centraliza e alinha o conteúdo
+
+<a class="navbar-brand"> => nome do site, no canto esquerdo.
+href="#" leva para o topo da página.
+
+<button class="navbar-toggler"> => botão de três risquinhos que
+só aparece no celular.
+  data-bs-toggle="collapse" => ao clicar, abre e fecha...
+  data-bs-target="#menu"    => ...o bloco que tem id="menu".
+
+<ul> => lista dos links. ms-auto empurra a lista para a DIREITA.
+<li> => cada item da lista.
+href="#perfil" => o "#" indica um lugar DENTRO da própria
+página: leva até a seção que tem id="perfil".
+O link "Trajetória" é novo e leva para a seção do Ato 9.
+===============================================================
+-->
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Alendre Silveira.dev</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#perfil">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trajetoria">Trajetória</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projetos">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--
+    ===========================================================
+    Ato 7: Carousel, slides de destaque com legenda animada
+    ===========================================================
+    O carousel mostra slides que trocam sozinhos.
+      id="carouselPortfolio" => nome do carousel. Os botões usam esse
+                                nome para saber qual carousel controlar.
+      carousel slide   => cria o componente de slides
+      carousel-fade    => troca os slides com efeito de esmaecer
+      data-bs-ride="carousel" => faz os slides trocarem sozinhos
+
+    Partes do carousel, na ordem:
+      1) carousel-indicators => os risquinhos embaixo. Cada botão
+         tem data-bs-slide-to com o número do slide (começa no 0).
+      2) carousel-inner => guarda TODOS os slides.
+         carousel-item  => cada slide.
+         active         => marca o slide que aparece PRIMEIRO.
+         <img> com d-block w-100 => imagem ocupando toda a largura.
+           src => caminho: pasta "imagens" + nome + extensão (.png)
+           alt => texto que aparece se a imagem não carregar
+      3) carousel-caption => LEGENDA por cima da imagem, com:
+           <h1 class="display-4 fw-bold"> => título bem grande, negrito
+           <p class="fs-4">               => texto em tamanho grande
+           <a class="btn btn-light btn-lg"> => botão claro e grande
+       <a ... download class="btn btn-outline-light"> => no 1º
+       slide, botão "Baixar currículo" (só com borda branca).
+       O atributo download faz o navegador BAIXAR o PDF em vez
+       de só abrir
+         A legenda SOBE e APARECE em cada slide graças à animação
+         do Ato 4.7 (RECURSO NOVO 1).
+      4) carousel-control-prev / next => setas de voltar e avançar.
+         data-bs-slide="prev" / "next" diz o que cada seta faz.
+    ===========================================================
+    -->
+    <div id="carouselPortfolio" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselPortfolio" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="imagens/slide1.png" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption">
+                    <h1 class="display-4 fw-bold">Olá, eu sou o Alendre</h1>
+                    <p class="fs-4">Mais de 20 anos em Planejamento Industrial, PCP e Métodos e Processos, com quase 18 anos de Embraer</p>
+                    <a href="#perfil" class="btn btn-light btn-lg">Conheça meu perfil</a>
+                    <a href="arquivos/curriculo-alendre-silveira.pdf" download class="btn btn-outline-light btn-lg">Baixar currículo</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="imagens/slide2.png" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption">
+                    <h1 class="display-4 fw-bold">Projetos que mostram minha evolução</h1>
+                    <p class="fs-4">Python, HTML, CSS e Bootstrap na prática</p>
+                    <a href="#projetos" class="btn btn-light btn-lg">Ver projetos</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="imagens/slide3.png" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption">
+                    <h1 class="display-4 fw-bold">Vamos conversar?</h1>
+                    <p class="fs-4">Aberto a oportunidades na indústria e em tecnologia</p>
+                    <a href="#contato" class="btn btn-light btn-lg">Entrar em contato</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselPortfolio" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!--
+    ===========================================================
+    Ato 8: Seção Perfil
+    ===========================================================
+    <section> cria uma SEÇÃO da página.
+      id="perfil"   => nome da seção, usado pelo link do menu
+      bg-white      => fundo branco
+      min-vh-100    => ocupa pelo menos a altura inteira da tela
+      d-flex align-items-center => centraliza o conteúdo na vertical
+      py-5          => espaço em cima e embaixo (padding)
+
+    GRID DO BOOTSTRAP (linhas e colunas):
+      row  => cria uma LINHA
+      col-lg-4 / col-lg-8 => colunas. A linha tem 12 partes: a foto
+             usa 4 e o conteúdo usa 8 (4 + 8 = 12). Em tela pequena,
+             as colunas ficam uma EMBAIXO da outra.
+      g-5  => espaço entre as colunas
+      align-items-start => alinha as colunas pelo topo
+    ===========================================================
+    -->
+    <section id="perfil" class="bg-white min-vh-100 d-flex align-items-center py-5">
+        <div class="container py-4">
+            <div class="row align-items-start g-5">
+                <!--
+                =======================================
+                Ato 8.1: Coluna da esquerda, foto e identificação
+                =======================================
+                <img> mostra a minha foto (imagens/perfil.png).
+                  profile-img   => classe minha: 220 x 220 pixels (Ato 4.8)
+                  rounded-circle => deixa a foto REDONDA
+                  border border-4 border-white => borda branca grossa
+                  shadow        => sombra para destacar
+                  img-fluid     => a imagem diminui junto com a tela
+                <h4 class="fw-bold"> => meu nome em negrito.
+                <p class="text-muted"> => texto em cinza suave.
+                <span class="badge"> => ETIQUETAS coloridas, uma para cada
+                frente da carreira: bg-primary (verde-azulada) e bg-dark
+                (azul-marinho).
+                d-flex flex-wrap justify-content-center gap-2 => coloca as
+                etiquetas lado a lado, centralizadas e com espaço entre elas.
+                <a href="arquivos/curriculo-alendre-silveira.pdf" download>
+                => botão "Baixar currículo (PDF)". O href aponta para o
+                arquivo na pasta "arquivos" e o atributo download faz o
+                navegador BAIXAR o PDF. mt-4 dá espaço em cima e px-4
+                deixa o botão mais largo.
+                =======================================
+                -->
+                <div class="col-lg-4 text-center">
+                    <img src="imagens/perfil.png" alt="Foto de perfil"
+                        class="profile-img rounded-circle border border-4 border-white shadow img-fluid mb-3">
+
+                    <h4 class="fw-bold mt-3 mb-1">Alendre Luciano Silveira</h4>
+                    <p class="text-muted mb-2">Técnico em Processos | Planejamento Industrial e PCP | Desenvolvimento de Sistemas</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <span class="badge bg-primary px-3 py-2">Processos Industriais</span>
+                        <span class="badge bg-dark px-3 py-2">Desenvolvimento de Sistemas</span>
+                    </div>
+                    <a href="arquivos/curriculo-alendre-silveira.pdf" download
+                        class="btn btn-primary btn-lg mt-4 px-4">Baixar currículo (PDF)</a>
+                </div>
+
+                <!--
+                =======================================
+                Ato 8.2: Coluna da direita, título e apresentação
+                =======================================
+                <p class="text-uppercase"> => texto pequeno em MAIÚSCULAS.
+                <h2 class="titulo-secao"> => título com tracinho (Ato 4.4).
+                <p class="fs-5 text-secondary"> => parágrafo maior (fs-5) e
+                cinza (text-secondary): a minha apresentação, destacando a
+                experiência industrial (Embraer, Métodos e Processos e PCP).
+                O segundo <p>, em tamanho normal, liga essa experiência ao
+                Desenvolvimento de Sistemas.
+                =======================================
+                -->
+                <div class="col-lg-8">
+                    <p class="text-uppercase text-muted fw-semibold mb-2">Planejamento Industrial, PCP e Métodos e Processos + Tecnologia</p>
+                    <h2 class="titulo-secao fw-bold mb-4">Perfil Profissional</h2>
+
+                    <p class="fs-5 text-secondary">
+                        Sou Técnico em Processos, com mais de 20 anos de experiência nas indústrias
+                        aeronáutica e industrial. Foram quase 18 anos na Embraer, onde comecei na produção
+                        e cheguei a Métodos e Processos, atuando também em Tempos e Métodos, Planejamento
+                        e Controle da Produção (PCP) e como Key User na implantação do SAP.
+                    </p>
+                    <p class="text-secondary">
+                        Hoje sou Planejador e Controlador de Produção e uno essa experiência ao curso de
+                        Desenvolvimento de Sistemas: conheço os processos de dentro da fábrica e estou
+                        aprendendo a criar os sistemas que ajudam a organizá-los.
+                    </p>
+
+                    <!--
+                    ===================================
+                    Ato 8.3: As duas frentes da carreira
+                    ===================================
+                    Dois CARDS do mesmo tamanho, lado a lado, que valorizam as
+                    duas frentes: Experiência Industrial e Desenvolvimento de
+                    Sistemas.
+                      col-md-6  => cada card ocupa metade da linha (6 de 12)
+                      card      => bloco visual do Bootstrap
+                      card-body => área interna do card
+                      border-0 shadow-sm => sem borda padrão, com sombra leve
+                      h-100     => os dois cards ficam com a MESMA altura
+                      frente frente-industria / frente-sistemas => classes minhas:
+                                faixa colorida à esquerda (Ato 4.5)
+                    <ul> => lista com marcadores. <li> => cada item.
+                    Depois dos cards, o parágrafo "Meu diferencial" junta as duas
+                    frentes numa frase. <span class="fw-semibold"> deixa só a
+                    palavra "Meu diferencial:" em negrito.
+                    ===================================
+                    -->
+                    <div class="row mt-4 g-3">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100 frente frente-industria">
+                                <div class="card-body">
+                                    <h5 class="fw-bold mb-3">Experiência Industrial</h5>
+                                    <ul class="text-secondary mb-0">
+                                        <li>Quase 18 anos na Embraer, da produção a Técnico em Processos</li>
+                                        <li>Planejamento e Controle da Produção (PCP), cronogramas e KPIs</li>
+                                        <li>Tempos e Métodos (MTM), Lean e melhoria contínua</li>
+                                        <li>Key User na implantação do SAP</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100 frente frente-sistemas">
+                                <div class="card-body">
+                                    <h5 class="fw-bold mb-3">Desenvolvimento de Sistemas</h5>
+                                    <ul class="text-secondary mb-0">
+                                        <li>Técnico em Desenvolvimento de Sistemas na ETEC (cursando)</li>
+                                        <li>Programas em Python com lógica, validação de dados e cálculos</li>
+                                        <li>Sites com HTML, CSS, Bootstrap e JavaScript</li>
+                                        <li>Projetos versionados e publicados no GitHub</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-secondary mt-4">
+                        <span class="fw-semibold">Meu diferencial:</span> entender o problema do jeito que
+                        quem está na produção enxerga e usar a programação para resolvê-lo, criando soluções
+                        que organizam processos, controlam dados e reduzem desperdícios.
+                    </p>
+
+                    <!--
+                    ===================================
+                    Ato 8.4: Cards de informação
+                    ===================================
+                    Quatro cards curtos: Localização, Área de interesse, Formação e
+                    Objetivo. Todos seguem o MESMO modelo:
+                      <h6 class="fw-bold"> => título do card
+                      <p class="text-muted mb-0"> => informação em cinza suave
+                                             (mb-0 tira a margem de baixo)
+                    ===================================
+                    -->
+                    <div class="row mt-4 g-3">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-bold mb-2">Localização</h6>
+                                    <p class="text-muted mb-0">São José dos Campos/SP</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-bold mb-2">Área de interesse</h6>
+                                    <p class="text-muted mb-0">Sistemas para a indústria: controle de dados, indicadores e automação de rotinas</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-bold mb-2">Formação</h6>
+                                    <p class="text-muted mb-0">MBA em Gestão de Processos e Técnico em Desenvolvimento de Sistemas (cursando)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-bold mb-2">Objetivo</h6>
+                                    <p class="text-muted mb-0">Unir processos industriais e tecnologia em soluções digitais</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    ===================================
+                    Ato 8.5: Tecnologias e ferramentas
+                    ===================================
+                    Dois cards com as tecnologias de PROGRAMAÇÃO. Cada tecnologia:
+                      <i class="devicon-...-plain colored fs-2"> => ÍCONE do Devicon
+                           (ligado no Ato 3). "colored" mostra as cores originais
+                           e "fs-2" define o tamanho.
+                      d-flex align-items-center gap-3 => ícone e texto lado a lado,
+                           alinhados no centro e com espaço entre eles
+                      <div class="fw-semibold"> => nome da tecnologia
+                      <small class="text-muted"> => descrição em letra menor
+                      mb-3 => espaço embaixo, separando uma tecnologia da outra
+                    ===================================
+                    -->
+                    <div class="mt-4">
+                        <h5 class="fw-semibold mb-3">Tecnologias e ferramentas</h5>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="devicon-html5-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">HTML5</div>
+                                                <small class="text-muted">Estrutura</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="devicon-css3-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">CSS3</div>
+                                                <small class="text-muted">Estilo</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="devicon-bootstrap-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Bootstrap</div>
+                                                <small class="text-muted">Layout</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="devicon-python-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Python</div>
+                                                <small class="text-muted">Algoritmos</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="devicon-git-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Git e GitHub</div>
+                                                <small class="text-muted">Versionamento e repositórios</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="devicon-vscode-plain colored fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">VS Code</div>
+                                                <small class="text-muted">Ambiente de desenvolvimento</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--
+                            ===========================
+                            Ato 8.6: Ferramentas da carreira industrial
+                            ===========================
+                            Dois cards no MESMO formato das tecnologias (Ato 8.5),
+                            agora com as ferramentas que usei na indústria.
+                            Como o Devicon não tem ícones dessas ferramentas,
+                            uso o BOOTSTRAP ICONS (ligado no Ato 3):
+                              <i class="bi bi-database"> => "bi" ativa a biblioteca
+                                  e "bi-database" escolhe o desenho (um banco de dados)
+                              icone-ferramenta => classe minha: cor verde-azulada
+                                  (Ato 4.12)
+                              fs-2 => mesmo tamanho dos ícones das tecnologias
+                            Cada ícone representa a ideia da ferramenta (calendário
+                            para cronogramas, régua para desenho técnico...), e não
+                            o logotipo oficial.
+                            ===========================
+                            -->
+                            <div class="col-12">
+                                <h6 class="fw-bold mt-2 mb-0">Ferramentas da carreira industrial</h6>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-boxes icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">SAP (MM, PP, PM e PS)</div>
+                                                <small class="text-muted">Materiais, produção, manutenção e projetos</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-calendar3 icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">MS Project</div>
+                                                <small class="text-muted">Cronogramas e Curva S</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-bar-chart-steps icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Primavera P6</div>
+                                                <small class="text-muted">Planejamento de projetos</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="bi bi-file-earmark-spreadsheet icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Excel</div>
+                                                <small class="text-muted">Indicadores (KPIs) e controles</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-database icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">SQL básico</div>
+                                                <small class="text-muted">Consultas a bancos de dados</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-bar-chart-line icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Power BI</div>
+                                                <small class="text-muted">Painéis de indicadores (em desenvolvimento)</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3 mb-3">
+                                            <i class="bi bi-rulers icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">AutoCAD e Catia V5</div>
+                                                <small class="text-muted">Desenho técnico e modelagem 3D</small>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="bi bi-buildings icone-ferramenta fs-2"></i>
+                                            <div>
+                                                <div class="fw-semibold">Navisworks</div>
+                                                <small class="text-muted">Revisão de projetos em 3D</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--
+                            ===========================
+                            Ato 8.7: Metodologias e idiomas
+                            ===========================
+                            Card que ocupa a linha INTEIRA (col-12), com ETIQUETAS (badge):
+                              bg-dark      => metodologias (Lean, Kaizen, 5S...)
+                              bg-secondary => idioma
+                              flex-wrap    => as etiquetas descem para a linha de baixo
+                                              quando não cabem
+                              px-3 py-2    => espaço interno das etiquetas
+                            ===========================
+                            -->
+                            <div class="col-12">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-3">Metodologias</h6>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge bg-dark px-3 py-2">Lean Manufacturing</span>
+                                            <span class="badge bg-dark px-3 py-2">Kaizen</span>
+                                            <span class="badge bg-dark px-3 py-2">5S</span>
+                                            <span class="badge bg-dark px-3 py-2">Kanban</span>
+                                            <span class="badge bg-dark px-3 py-2">JIT</span>
+                                            <span class="badge bg-dark px-3 py-2">Trabalho Padronizado</span>
+                                            <span class="badge bg-dark px-3 py-2">Tempos e Métodos / MTM</span>
+                                            <span class="badge bg-dark px-3 py-2">Curva S e KPIs</span>
+                                        </div>
+
+                                        <h6 class="fw-bold mt-4 mb-3">Idiomas</h6>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge bg-secondary px-3 py-2">Inglês básico (em desenvolvimento)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    ===========================================================
+    Ato 9: Seção Trajetória (RECURSO NOVO 3)
+    ===========================================================
+    Seção NOVA, que não existia no modelo da aula. Mostra minha
+    carreira em duas LINHAS DO TEMPO lado a lado.
+      id="trajetoria" => nome da seção, usado pelo novo link do menu
+      text-center mb-5 => título e subtítulo centralizados
+
+      col-lg-7 => coluna MAIOR: experiência profissional
+      col-lg-5 => coluna MENOR: formação acadêmica (7 + 5 = 12)
+
+    Cada linha do tempo usa duas classes minhas (Ato 4.10):
+      linha-tempo => desenha a linha vertical
+      item-tempo  => cada acontecimento, com uma bolinha na linha
+    Dentro de cada item:
+      <span class="badge"> => período. bg-primary (verde-azulada)
+           para o atual e bg-secondary (cinza) para os anteriores
+      <h5> => cargo ou curso
+      <p class="text-muted"> => empresa ou escola
+      <p> => breve descrição das atividades
+    ===========================================================
+    -->
+    <section id="trajetoria" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="titulo-secao fw-bold">Trajetória</h2>
+                <p class="text-muted mb-0">Da produção aeronáutica ao desenvolvimento de sistemas.</p>
+            </div>
+
+            <div class="row g-5">
+
+                <div class="col-lg-7">
+                    <h4 class="fw-bold mb-4">Experiência profissional</h4>
+                    <div class="linha-tempo">
+
+                        <div class="item-tempo">
+                            <span class="badge bg-primary mb-2">2023 – atual</span>
+                            <h5 class="fw-bold mb-1">Planejador e Controlador de Produção</h5>
+                            <p class="text-muted mb-1">TWA Equipamentos e Serviços | Nestlé – Caçapava</p>
+                            <p class="mb-0">Cronogramas no MS Project, acompanhamento de prazos com Curva S,
+                                indicadores (KPIs), análise de desvios e melhoria contínua.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2022 – 2023</span>
+                            <h5 class="fw-bold mb-1">Coordenador de Centro Esportivo e Analista Administrativo</h5>
+                            <p class="text-muted mb-1">Prefeitura de São José dos Campos e GAVID Estruturas Metálicas</p>
+                            <p class="mb-0">Organização de equipes, controle de materiais e padronização de rotinas.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2019 – 2020</span>
+                            <h5 class="fw-bold mb-1">Processista</h5>
+                            <p class="text-muted mb-1">Thruone Group</p>
+                            <p class="mb-0">Análise de processos aeronáuticos, tempos padrão (MTM) e documentação de processos.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2017 – 2019</span>
+                            <h5 class="fw-bold mb-1">Editor de Imagens</h5>
+                            <p class="text-muted mb-1">Campanati Serviços Comerciais</p>
+                            <p class="mb-0">Criação e edição de imagens e vídeos para redes sociais e divulgação de marcas.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2016 – 2017</span>
+                            <h5 class="fw-bold mb-1">Analista de Tempos e Métodos</h5>
+                            <p class="text-muted mb-1">Associação MTM do Brasil</p>
+                            <p class="mb-0">Definição de tempos padrão em processos aeronáuticos com a metodologia MTM.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">1998 – 2015</span>
+                            <h5 class="fw-bold mb-1">Técnico em Processos</h5>
+                            <p class="text-muted mb-1">Embraer – quase 18 anos de empresa</p>
+                            <p class="mb-0">Comecei na produção (materiais compósitos e montagem estrutural) e
+                                cheguei a Técnico em Processos: roteiros de fabricação, redes de precedência,
+                                redução de ciclo, projeto HEAI na China e Key User na implantação do SAP.</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">1989 – 1997</span>
+                            <h5 class="fw-bold mb-1">Início da carreira</h5>
+                            <p class="text-muted mb-1">Alpargatas, McQuay do Brasil, Dabi Atlante e Grupo Sete Estrelas</p>
+                            <p class="mb-0">Ferramentaria, desenhos técnicos, cadastro de materiais em sistema ERP
+                                e melhorias em processos de fabricação.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <h4 class="fw-bold mb-4">Formação acadêmica</h4>
+                    <div class="linha-tempo">
+
+                        <div class="item-tempo">
+                            <span class="badge bg-primary mb-2">2025 – 2027 (cursando)</span>
+                            <h5 class="fw-bold mb-1">Técnico em Desenvolvimento de Sistemas</h5>
+                            <p class="text-muted mb-0">ETEC – Escola Técnica Estadual de São Paulo</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2023 – 2026</span>
+                            <h5 class="fw-bold mb-1">MBA em Gestão de Processos</h5>
+                            <p class="text-muted mb-0">Universidade Cidade de São Paulo</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">2019 – 2020</span>
+                            <h5 class="fw-bold mb-1">Tecnólogo em Logística</h5>
+                            <p class="text-muted mb-0">Universidade Cidade de São Paulo</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">1991 – 1995</span>
+                            <h5 class="fw-bold mb-1">Técnico em Mecânica</h5>
+                            <p class="text-muted mb-0">Colégio Técnico ETEP</p>
+                        </div>
+
+                        <div class="item-tempo">
+                            <span class="badge bg-secondary mb-2">1991</span>
+                            <h5 class="fw-bold mb-1">Ferramenteiro</h5>
+                            <p class="text-muted mb-0">SENAI São Paulo</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--
+    ===========================================================
+    Ato 10: Seção Projetos
+    ===========================================================
+    Três cards com projetos REAIS do meu GitHub.
+      row g-4 => linha com espaço entre os cards
+      col-md-6 col-xl-4 => 2 cards por linha em tela média e 3 em
+                           tela grande (4 + 4 + 4 = 12)
+    Cada card:
+      rounded-4    => cantos mais arredondados
+      card-animado => classe minha: o card SOBE ao passar o mouse
+                      (Ato 4.9, RECURSO NOVO 2)
+      <img class="card-img-top project-img"> => imagem no topo do
+           card, com 200 pixels de altura (Ato 4.8)
+      card-body d-flex flex-column => conteúdo organizado em coluna
+      <h5 class="card-title"> => nome do projeto
+      <p class="card-text flex-grow-1"> => descrição. flex-grow-1
+           faz o texto ocupar o espaço que sobra
+      <a class="btn btn-outline-primary mt-auto"> => botão "Ver
+           projeto". mt-auto empurra o botão para o FIM do card,
+           deixando os três botões alinhados
+      target="_blank" => abre o link numa NOVA ABA
+    ===========================================================
+    -->
+    <section id="projetos" class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="titulo-secao fw-bold">Projetos</h2>
+                <p class="text-muted mb-0">
+                    Alguns projetos e atividades que representam minha evolução na área de desenvolvimento.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 card-animado">
+                        <img src="imagens/p1.png" class="card-img-top project-img" alt="Portfólio Pessoal">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Portfólio Pessoal</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Este site, feito com HTML, CSS, Bootstrap e JavaScript para apresentar meu
+                                perfil, minha trajetória e meus projetos.
+                            </p>
+                            <a href="https://github.com/alendre-sjc/portfolio" target="_blank"
+                                class="btn btn-outline-primary mt-auto">Ver projeto</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 card-animado">
+                        <img src="imagens/p2.png" class="card-img-top project-img" alt="Calculadora de Consumo Elétrico">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Calculadora de Consumo Elétrico</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Programa em Python que calcula quanto um aparelho gasta de energia por mês
+                                (em kWh) e quanto isso custa em reais.
+                            </p>
+                            <a href="https://github.com/alendre-sjc/consumo-energia" target="_blank"
+                                class="btn btn-outline-primary mt-auto">Ver projeto</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 card-animado">
+                        <img src="imagens/p3.png" class="card-img-top project-img" alt="Pesquisa de Satisfação TudoWeb">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Pesquisa de Satisfação TudoWeb</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Programa em Python que coleta nome, idade e opinião dos clientes, valida as
+                                respostas e mostra o total de cada avaliação.
+                            </p>
+                            <a href="https://github.com/alendre-sjc/TudoWeb" target="_blank"
+                                class="btn btn-outline-primary mt-auto">Ver projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    ===========================================================
+    Ato 11: Seção Contato
+    ===========================================================
+    Um card centralizado com os meus contatos.
+      row justify-content-center => centraliza o card na linha
+      col-lg-6 => o card ocupa metade da largura em tela grande
+      p-4      => espaço interno do card
+      d-grid gap-3 => botões um EMBAIXO do outro, com espaço
+
+    Logo abaixo do texto, ETIQUETAS (badge) com as áreas de
+    interesse: indústria em verde-azulado e tecnologia em
+    azul-marinho.
+
+    Os cinco botões:
+      Currículo => baixa o meu currículo em PDF (atributo download)
+      mailto:  => abre o programa de e-mail com o meu endereço
+      GitHub   => btn-dark (azul-marinho, Ato 4.2)
+      LinkedIn => btn-primary (verde-azulado, Ato 4.2)
+      WhatsApp => btn-whatsapp (classe minha, verde do aplicativo)
+                  https://wa.me/5512988542120 abre uma conversa
+                  comigo: 55 (Brasil) + 12 (DDD) + número.
+                  ?text=... já deixa uma mensagem escrita. No link,
+                  %20 = espaço, %2C = vírgula, %C3%A1 = á e
+                  %C3%B3 = ó.
+      btn-lg   => botões maiores
+
+    <hr class="my-4"> => linha de separação com espaço em cima e
+    embaixo.
+    ===========================================================
+    -->
+    <section id="contato" class="min-vh-100 d-flex align-items-center py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="titulo-secao fw-bold">Contato</h2>
+                <p class="text-muted">
+                    Aberto a oportunidades em Planejamento Industrial, PCP, Métodos e Processos,
+                    Melhoria Contínua e Tecnologia.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
+                        <h4 class="fw-bold mb-3">Fale comigo</h4>
+                        <p class="text-muted mb-4">
+                            Estou disponível para conversar sobre vagas, projetos e parcerias nas áreas de
+                            Planejamento Industrial, PCP, Métodos e Processos, Melhoria Contínua e
+                            Desenvolvimento de Sistemas.
+                        </p>
+
+                        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                            <span class="badge bg-primary px-3 py-2">Planejamento Industrial</span>
+                            <span class="badge bg-primary px-3 py-2">PCP</span>
+                            <span class="badge bg-primary px-3 py-2">Métodos e Processos</span>
+                            <span class="badge bg-primary px-3 py-2">Melhoria Contínua</span>
+                            <span class="badge bg-dark px-3 py-2">Tecnologia</span>
+                        </div>
+
+                        <div class="d-grid gap-3">
+                            <a href="arquivos/curriculo-alendre-silveira.pdf" download class="btn btn-primary btn-lg">Baixar currículo (PDF)</a>
+                            <a href="mailto:alendre_silveira@yahoo.com.br" class="btn btn-outline-primary btn-lg">Enviar e-mail</a>
+                            <a href="https://github.com/alendre-sjc" target="_blank" class="btn btn-dark btn-lg">GitHub</a>
+                            <a href="https://www.linkedin.com/in/alendre-silveira/" target="_blank" class="btn btn-primary btn-lg">LinkedIn</a>
+                            <a href="https://wa.me/5512988542120?text=Ol%C3%A1%2C%20Alendre!%20Vi%20seu%20portf%C3%B3lio." target="_blank" class="btn btn-whatsapp btn-lg">WhatsApp</a>
+                        </div>
+
+                        <hr class="my-4">
+                        <p class="text-muted mb-0">
+                            <span class="fw-semibold">Localização:</span> São José dos Campos/SP
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    ===========================================================
+    Ato 12: Rodapé
+    ===========================================================
+    <footer> marca o RODAPÉ, a parte final da página.
+      bg-dark text-light => fundo azul-marinho e texto claro
+      rodape   => classe minha: faixa verde-azulada em cima (Ato 4.3)
+      <small>  => texto menor, com as tecnologias usadas
+      ©        => símbolo de direitos autorais
+    ===========================================================
+    -->
+    <footer class="bg-dark text-light py-4 rodape">
+        <div class="container text-center">
+            <p class="mb-1">© 2026 - Alendre Luciano Silveira | Portfólio Profissional</p>
+            <small>Desenvolvido com HTML, CSS, Bootstrap e JavaScript</small>
+        </div>
+    </footer>
+
+    <!--
+    ===========================================================
+    Ato 13: Botão "voltar ao topo" (RECURSO NOVO 4)
+    ===========================================================
+    Botão redondo com uma seta (↑) no canto inferior direito.
+      href="#"      => ao clicar, volta para o TOPO da página
+      id="btnTopo"  => nome ÚNICO do botão. É por ele que o CSS
+                       (Ato 4.11) e o JavaScript (Ato 14) o encontram
+      rounded-circle shadow => botão redondo com sombra
+    Ele começa ESCONDIDO. Quem decide quando ele aparece é o
+    JavaScript do Ato 14.
+    ===========================================================
+    -->
+    <a href="#" id="btnTopo" class="btn btn-primary rounded-circle shadow">↑</a>
+
+    <!--
+    ===========================================================
+    Ato 14: Scripts (Bootstrap e JavaScript) e fechamento
+    ===========================================================
+    Os scripts ficam no FINAL do <body>: assim a página aparece
+    primeiro e o código roda depois que todas as tags já existem.
+
+    1º <script src="..."> => JavaScript do BOOTSTRAP. Sem ele, o
+       carousel não troca de slide e o menu do celular não abre.
+
+    2º <script> => o MEU código JavaScript, que controla o botão
+       "voltar ao topo". Linha por linha:
+
+       let botao = document.getElementById("btnTopo");
+           => procura na página o elemento com id="btnTopo" e guarda
+              ele numa VARIÁVEL chamada "botao".
+
+       window.onscroll = function () { ... };
+           => "quando a janela for rolada, execute o que está entre
+              as chaves". Roda TODA vez que a página se mexe.
+
+       if (window.scrollY > 300) { ... }
+           => SE a página já desceu mais de 300 pixels...
+       botao.style.display = "block";
+           => ...MOSTRA o botão.
+       else { botao.style.display = "none"; }
+           => SENÃO (está perto do topo), ESCONDE o botão.
+
+    Por fim, </body> fecha o corpo e </html> fecha a página.
+    ===========================================================
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let botao = document.getElementById("btnTopo");
+
+        window.onscroll = function () {
+            if (window.scrollY > 300) {
+                botao.style.display = "block";
+            } else {
+                botao.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
